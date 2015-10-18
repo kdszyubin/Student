@@ -36,6 +36,8 @@ public:
 #endif
 
 protected:
+	BOOL m_bTBar;
+	BOOL m_bZs;
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()
@@ -49,7 +51,12 @@ public:
 	afx_msg void OnScoreMath();
 	afx_msg void OnTest();
 	afx_msg void OnUpdateTest(CCmdUI *pCmdUI);
+//	afx_msg void OnUpdateNameZs(CCmdUI *pCmdUI);
+//	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* /*pWnd*/, CPoint /*point*/);
+	afx_msg void OnViewChangeTb();
+	afx_msg void OnUpdateNameZs(CCmdUI *pCmdUI);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // StudentView.cpp 中的调试版本
