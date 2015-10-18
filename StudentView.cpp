@@ -3,6 +3,7 @@
 //
 
 #include "stdafx.h"
+#include "MainFrm.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
@@ -34,7 +35,12 @@ BEGIN_MESSAGE_MAP(CStudentView, CView)
 	ON_COMMAND(ID_SCORE_MATH, &CStudentView::OnScoreMath)
 	ON_COMMAND(ID_TEST, &CStudentView::OnTest)
 	ON_UPDATE_COMMAND_UI(ID_TEST, &CStudentView::OnUpdateTest)
-	ON_WM_CONTEXTMENU()
+//	ON_UPDATE_COMMAND_UI(ID_NAME_ZS, &CStudentView::OnUpdateNameZs)
+//	ON_WM_MOUSEMOVE()
+ON_WM_CONTEXTMENU()
+ON_COMMAND(ID_VIEW_CHANGE_TB, &CStudentView::OnViewChangeTb)
+ON_UPDATE_COMMAND_UI(ID_NAME_ZS, &CStudentView::OnUpdateNameZs)
+ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CStudentView 构造/析构
@@ -42,6 +48,8 @@ END_MESSAGE_MAP()
 CStudentView::CStudentView()
 {
 	// TODO: 在此处添加构造代码
+	m_bTBar = true;
+	m_bZs = false;
 }
 
 CStudentView::~CStudentView()
@@ -133,6 +141,7 @@ void CStudentView::OnNameZs()
 {
 	// TODO: 在此添加命令处理程序代码
 	MessageBox(L"张三", L"姓名");
+	m_bZs = !m_bZs;
 	
 }
 
@@ -187,10 +196,73 @@ void CStudentView::OnUpdateTest(CCmdUI *pCmdUI)
 }
 
 
+//void CStudentView::OnUpdateNameZs(CCmdUI *pCmdUI)
+//{
+//	// TODO: 在此添加命令更新用户界面处理程序代码
+//	static BOOL isCheck = FALSE;
+//	if (!isCheck)
+//		pCmdUI->SetCheck(1);
+//	else
+//		pCmdUI->SetCheck(0);
+//	isCheck = !isCheck;
+//}
+
+
+//void CStudentView::OnMouseMove(UINT nFlags, CPoint point)
+//{
+//	// TODO: 在此添加消息处理程序代码和/或调用默认值
+//
+//	CView::OnMouseMove(nFlags, point);
+//}
+
+
 void CStudentView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
 	// TODO: 在此处添加消息处理程序代码
 	CMenu menu;
 	menu.LoadMenu(IDR_EDIT_MENU);
 	menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
+}
+
+
+void CStudentView::OnViewChangeTb()
+{
+	// TODO: 在此添加命令处理程序代码
+	CMainFrame *pFrmWnd = (CMainFrame*)GetTopLevelFrame();
+	if (m_bTBar)
+	{
+		if (m_bTBar)
+		{
+			pFrmWnd->ShowControlBar(&pFrmWnd->m_wndToolBar, FALSE, FALSE);
+			pFrmWnd->ShowControlBar(&pFrmWnd->m_ToolBar, TRUE, FALSE);
+			m_bTBar = false;
+		}
+	}
+	else
+	{
+		pFrmWnd->ShowControlBar(&pFrmWnd->m_ToolBar, FALSE, FALSE);
+		pFrmWnd->ShowControlBar(&pFrmWnd->m_wndToolBar, TRUE, FALSE);
+		m_bTBar = true;
+	}
+}
+
+
+void CStudentView::OnUpdateNameZs(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(m_bZs);
+}
+
+
+void CStudentView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	wchar_t buf[20];
+	CMainFrame *pFrmWnd = (CMainFrame*)GetTopLevelFrame();
+	_itow_s(point.x, buf, 20, 10);
+	pFrmWnd->m_wndStatusBar.SetPaneText(pFrmWnd->xVal, buf);
+	_itow_s(point.y, buf, 20, 10);
+	pFrmWnd->m_wndStatusBar.SetPaneText(pFrmWnd->yVal, buf);
+
+	CView::OnMouseMove(nFlags, point);
 }

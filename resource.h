@@ -31,6 +31,7 @@
 #define ID_TEST                         32789
 #define ID_BUTTON32797                  32797
 #define ID_BUTTON32798                  32798
+#define IDR_MYTB                        32799
 #define ID_32802                        32802
 #define ID_VIEW_CHANGE_TB               32803
 
@@ -38,7 +39,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        318
+#define _APS_NEXT_RESOURCE_VALUE        317
 #define _APS_NEXT_COMMAND_VALUE         32804
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
