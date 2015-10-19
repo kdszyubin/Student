@@ -10,6 +10,24 @@
 #define IDR_MENU1                       313
 #define IDR_EDIT_MENU                   313
 #define IDR_MENU2                       314
+#define IDD_INPUT                       317
+#define IDD_COMM                        319
+#define IDD_MATH                        320
+#define IDD_COMP                        321
+#define IDC_NAME                        1000
+#define IDC_MATH                        1002
+#define IDC_ANAL                        1003
+#define IDC_ALGE                        1004
+#define IDC_ENG                         1005
+#define IDC_PROB                        1005
+#define IDC_COMP                        1006
+#define IDC_EDIT                        1006
+#define IDC_PROG                        1009
+#define IDC_DATA                        1010
+#define IDC_ORGA                        1011
+#define IDC_POLI                        1012
+#define IDC_ENGL                        1013
+#define IDC_PHYS                        1014
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -34,14 +52,24 @@
 #define IDR_MYTB                        32799
 #define ID_32802                        32802
 #define ID_VIEW_CHANGE_TB               32803
+#define ID_DLG_INPUT                    32804
+#define ID_32805                        32805
+#define ID_DLG_OPEN                     32806
+#define ID_32807                        32807
+#define ID_DLG_COLOR                    32808
+#define ID_32809                        32809
+#define ID_32810                        32810
+#define ID_SCORE_Lessions               32811
+#define ID_SCORE_LESSIONSJLKJLKJL       32812
+#define ID_SCORE_LESSION                32813
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        317
-#define _APS_NEXT_COMMAND_VALUE         32804
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_RESOURCE_VALUE        323
+#define _APS_NEXT_COMMAND_VALUE         32814
+#define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

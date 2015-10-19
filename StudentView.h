@@ -38,6 +38,14 @@ public:
 protected:
 	BOOL m_bTBar;
 	BOOL m_bZs;
+	CDialog m_mlDlg;
+	CString m_sName; 
+	int m_iMath, m_iEng, m_iComp;
+	COLORREF m_crCol;
+    int m_iAnal, m_iAlge, m_iProb;
+    int m_iProg, m_iData, m_iOrga;
+    int m_iPoli, m_iEngl, m_iPhys;
+
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()
@@ -57,6 +65,10 @@ public:
 	afx_msg void OnViewChangeTb();
 	afx_msg void OnUpdateNameZs(CCmdUI *pCmdUI);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnDlgInput();
+	afx_msg void OnDlgOpen();
+	afx_msg void OnDlgColor();
+	afx_msg void OnScoreLession();
 };
 
 #ifndef _DEBUG  // StudentView.cpp 中的调试版本
