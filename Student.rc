@@ -127,7 +127,7 @@ BEGIN
         MENUITEM "打印预览(&V)",                    ID_FILE_PRINT_PREVIEW
         MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
         MENUITEM SEPARATOR
-        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "退出(&X)",                      ID_APP_EXIT
     END
@@ -156,6 +156,13 @@ BEGIN
         MENUITEM "数学(&M)\tShift+M",             ID_SCORE_MATH
         MENUITEM "英语(&E)\tShift+E",             ID_SCORE_ENG
         MENUITEM "计算机(&C)\tShift+C",            ID_SCORE_COMP
+        MENUITEM "课程成绩(&L)\tShitf+L",           ID_SCORE_LESSION
+    END
+    POPUP "对话框(&D)"
+    BEGIN
+        MENUITEM "输入学生信息(&I)…",                 ID_DLG_INPUT
+        MENUITEM "打开文件(&O)…",                   ID_DLG_OPEN
+        MENUITEM "设置颜色(&C)…",                   ID_DLG_COLOR
     END
     MENUITEM "测试(&T)",                      ID_TEST
     POPUP "帮助(&H)"
@@ -223,6 +230,63 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
 END
 
+IDD_INPUT DIALOGEX 0, 0, 235, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "输入学生信息"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,163,64,50,14
+    PUSHBUTTON      "取消",IDCANCEL,163,97,50,14
+    LTEXT           "姓名(&N)：",IDC_STATIC,23,14,43,8
+    EDITTEXT        IDC_NAME,89,14,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "成绩(&S)",IDC_STATIC,15,39,128,95
+    LTEXT           "数学(&M)：",IDC_STATIC,23,56,43,8
+    EDITTEXT        IDC_MATH,89,56,40,14,ES_AUTOHSCROLL
+    LTEXT           "英语(&E)：",IDC_STATIC,23,80,43,8
+    LTEXT           "计算机(&C)：",IDC_STATIC,23,104,43,8
+    EDITTEXT        IDC_ENG,89,80,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMP,89,104,40,14,ES_AUTOHSCROLL
+END
+
+IDD_COMM DIALOGEX 0, 0, 151, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "公共"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "政治(&P)",IDC_STATIC,17,14,26,8
+    EDITTEXT        IDC_POLI,86,14,40,14,ES_AUTOHSCROLL
+    LTEXT           "英语(&E)",IDC_STATIC,17,47,26,8
+    LTEXT           "体育(&H)",IDC_STATIC,17,81,27,8
+    EDITTEXT        IDC_ENGL,86,47,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PHYS,86,81,40,14,ES_AUTOHSCROLL
+END
+
+IDD_MATH DIALOGEX 0, 0, 151, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "数学"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "数学分析(&M)",IDC_STATIC,17,14,44,8
+    EDITTEXT        IDC_ANAL,86,14,40,14,ES_AUTOHSCROLL
+    LTEXT           "高等代数(&A)",IDC_STATIC,17,47,43,8
+    LTEXT           "概率统计(&P)",IDC_STATIC,17,81,42,8
+    EDITTEXT        IDC_ALGE,86,47,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROB,86,81,40,14,ES_AUTOHSCROLL
+END
+
+IDD_COMP DIALOGEX 0, 0, 151, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "计算机"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "程序设计(&P)",IDC_STATIC,17,14,42,8
+    EDITTEXT        IDC_PROG,86,14,40,14,ES_AUTOHSCROLL
+    LTEXT           "数据结构(&D)",IDC_STATIC,17,47,43,8
+    LTEXT           "组成原理(&O)",IDC_STATIC,17,81,44,8
+    EDITTEXT        IDC_DATA,86,47,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ORGA,86,81,40,14,ES_AUTOHSCROLL
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -278,8 +342,66 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 55
     END
+
+    IDD_INPUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+
+    IDD_COMM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+    END
+
+    IDD_MATH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+    END
+
+    IDD_COMP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+    END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_INPUT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_COMM AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_MATH AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_COMP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
 
 
 /////////////////////////////////////////////////////////////////////////////
