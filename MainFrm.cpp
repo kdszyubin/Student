@@ -17,6 +17,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 /*static UINT indicators[] =
@@ -30,10 +31,11 @@ END_MESSAGE_MAP()
 static UINT indicators[] =
 {
 	ID_SEPARATOR, //提示 nIndex = 0
-	ID_SEPARATOR, //“x:” nIndex = 1
-	ID_SEPARATOR, //x值 nIndex = 2
-	ID_SEPARATOR, //“y:” nIndex = 3
-	ID_SEPARATOR, //y值 nIndex = 4
+	ID_SEPARATOR, //进度条 nIndex = 1
+	ID_SEPARATOR, //“x:” nIndex = 2
+	ID_SEPARATOR, //x值 nIndex = 3
+	ID_SEPARATOR, //“y:” nIndex = 4
+	ID_SEPARATOR, //y值 nIndex = 5
 };
 
 // CMainFrame 构造/析构
@@ -73,12 +75,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 	m_wndStatusBar.SetPaneInfo(0, prompt, SBPS_STRETCH, 0); //提示
-	m_wndStatusBar.SetPaneInfo(1, xName, SBPS_NOBORDERS, 8); //"x:"
+	m_wndStatusBar.SetPaneInfo(1, progress, SBPS_NORMAL, 200);
+	m_wndStatusBar.SetPaneText(progress, L"显示进度条");
+	m_wndStatusBar.SetPaneInfo(2, xName, SBPS_NOBORDERS, 8); //"x:"
 	m_wndStatusBar.SetPaneText(xName, L"x:");
-	m_wndStatusBar.SetPaneInfo(2, xVal, SBPS_NORMAL, 24); //x值
-	m_wndStatusBar.SetPaneInfo(3, yName, SBPS_NOBORDERS, 8);//"y:"
+	m_wndStatusBar.SetPaneInfo(3, xVal, SBPS_NORMAL, 24); //x值
+	m_wndStatusBar.SetPaneInfo(4, yName, SBPS_NOBORDERS, 8);//"y:"
 	m_wndStatusBar.SetPaneText(yName, L"y:");
-	m_wndStatusBar.SetPaneInfo(4, yVal, SBPS_NORMAL, 24); //y值
+	m_wndStatusBar.SetPaneInfo(5, yVal, SBPS_NORMAL, 24); //y值
+	CRect rect;
+	m_wndStatusBar.GetItemRect(progress, &rect);
+	m_Progress.Create(WS_CHILD | WS_VISIBLE, rect,
+		&m_wndStatusBar, 1111);
 
 	// TODO: 如果不需要可停靠工具栏，则删除这三行
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
@@ -119,3 +127,15 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame 消息处理程序
 
+
+
+void CMainFrame::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+					   // TODO: 在此处添加消息处理程序代码
+					   // 不为绘图消息调用 CFrameWnd::OnPaint()
+	CRect rect;
+	m_wndStatusBar.GetItemRect(progress, &rect);
+	m_Progress.SetWindowPos(NULL, rect.left, rect.top,
+		rect.Width(), rect.Height(), SWP_NOZORDER);
+}

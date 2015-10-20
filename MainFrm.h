@@ -12,10 +12,11 @@ protected: // 仅从序列化创建
 
 // 特性
 public:
-	enum SBID { prompt, xName, xVal, yName, yVal };
+	enum SBID { prompt, progress, xName, xVal, yName, yVal };
 	CToolBar          m_ToolBar;
 	CToolBar          m_wndToolBar;
 	CStatusBar        m_wndStatusBar;
+	CProgressCtrl     m_Progress;
 
 // 操作
 public:
@@ -41,6 +42,8 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	DECLARE_MESSAGE_MAP()
 
+public:
+	afx_msg void OnPaint();
 };
 
 

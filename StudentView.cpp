@@ -38,7 +38,7 @@ BEGIN_MESSAGE_MAP(CStudentView, CView)
 	ON_COMMAND(ID_SCORE_ENG, &CStudentView::OnScoreEng)
 	ON_COMMAND(ID_SCORE_MATH, &CStudentView::OnScoreMath)
 	ON_COMMAND(ID_TEST, &CStudentView::OnTest)
-	ON_UPDATE_COMMAND_UI(ID_TEST, &CStudentView::OnUpdateTest)
+//	ON_UPDATE_COMMAND_UI(ID_TEST, &CStudentView::OnUpdateTest)
 //	ON_UPDATE_COMMAND_UI(ID_NAME_ZS, &CStudentView::OnUpdateNameZs)
 //	ON_WM_MOUSEMOVE()
 ON_WM_CONTEXTMENU()
@@ -212,16 +212,28 @@ void CStudentView::OnScoreMath()
 void CStudentView::OnTest()
 {
 	// TODO: 在此添加命令处理程序代码
-	MessageBox(L"顶层菜单项", L"测试");
+	// 获取主框架窗口对象的指针
+	CMainFrame *pFrmWnd = (CMainFrame*)GetTopLevelFrame();
+	MSG msg; // 定义消息结构变量
+	for (int i = 0; i <= 100; i++) {
+		pFrmWnd->m_Progress.SetPos(i); // 设置当前进度位置
+									   // 下面的代码可让系统获得控制权以能处理消息响应（避免程序无响应）：
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) { // 取消息
+			TranslateMessage(&msg); // 转换消息
+			DispatchMessage(&msg); // 发送消息
+		}
+		// …… 某个耗时的计算或操作，这里用休眠来代替：
+		Sleep(200); // 休眠0.2 秒
+	}
 }
 
 
-void CStudentView::OnUpdateTest(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->Enable(FALSE);
-	pCmdUI->SetCheck(1);
-}
+//void CStudentView::OnUpdateTest(CCmdUI *pCmdUI)
+//{
+//	// TODO: 在此添加命令更新用户界面处理程序代码
+//	//pCmdUI->Enable(FALSE);
+//	//pCmdUI->SetCheck(1);
+//}
 
 
 //void CStudentView::OnUpdateNameZs(CCmdUI *pCmdUI)
