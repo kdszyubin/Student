@@ -58,7 +58,7 @@ public:
 	afx_msg void OnScoreEng();
 	afx_msg void OnScoreMath();
 	afx_msg void OnTest();
-	afx_msg void OnUpdateTest(CCmdUI *pCmdUI);
+//	afx_msg void OnUpdateTest(CCmdUI *pCmdUI);
 //	afx_msg void OnUpdateNameZs(CCmdUI *pCmdUI);
 //	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* /*pWnd*/, CPoint /*point*/);
